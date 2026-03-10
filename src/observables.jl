@@ -1,14 +1,8 @@
 # 1 つの k 点での電流成分 Re tr(ρ dH/dk) を計算する。
 # 2 バンド模型では 2x2 行列のトレースを取ればよい。
-function _current_component(
+_current_component(
     ρk::AbstractMatrix{<:Complex}, dHdk::AbstractMatrix{<:Complex}
-)::Float64
-    throw(
-        ErrorException(
-            "TODO(student): implement _current_component(ρk, dHdk) in src/observables.jl",
-        ),
-    )
-end
+)::Float64 = real(tr(ρk * dHdk))
 
 # k 点ごとの状態配列と dH/dk 配列の長さがそろっているか確認する。
 # 観測量の平均は同じ k メッシュ上でしか意味を持たないので、
@@ -29,7 +23,17 @@ end
 function current_traces(
     ρ::AbstractVector{<:AbstractMatrix{<:Complex}}, dHdk::NamedTuple{(:x, :y)}
 )
-    throw(ErrorException("TODO(student): implement current_traces(ρ, dHdk) in src/observables.jl"))
+    _validate_current_inputs(ρ, dHdk.x, dHdk.y)
+
+    total_x = 0.0
+    total_y = 0.0
+    @inbounds for i in eachindex(ρ)
+        total_x += _current_component(ρ[i], dHdk.x[i])
+        total_y += _current_component(ρ[i], dHdk.y[i])
+    end
+
+    scale = inv(length(ρ))
+    return (x=total_x * scale, y=total_y * scale)
 end
 
 # 各 k 点で dH/dk_x, dH/dk_y をまとめて前計算する。

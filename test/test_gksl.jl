@@ -1,6 +1,8 @@
 using LinearAlgebra
 using Test
 
+# GKSL 右辺と Lindblad キャッシュが、密度行列として重要な性質を
+# 保つように作られているかを確認する。
 @testset "GKSL properties" begin
     Nk = 4
     kgrid = kgrid_rhombus(Nk)
@@ -14,13 +16,16 @@ using Test
     p = RHSParams(; kgrid=kgrid, tb=tb, pulse=pulse, lindblad=cache, γ=0.1)
     rhs!(dρ, ρ, p, 0.0)
 
+    # GKSL 方程式はトレース保存かつ Hermitian 性保存であるべきなので、
+    # dρ/dt もその条件を満たすことを確かめる。
     for i in eachindex(dρ)
-        # ここを実装（トレース保存・エルミート性）
-        throw(ErrorException("TODO(student): add trace/Hermitian tests in test/test_gksl.jl"))
+        @test abs(tr(dρ[i])) ≤ 1e-10
+        @test norm(dρ[i] - dρ[i]') ≤ 1e-10
     end
 
+    # L^†L は |c_k><c_k| に対応する射影になっているはずである。
     for LdL in cache.LdL
-        # ここを実装（L^\dagger Lは射影演算子？）
-        throw(ErrorException("TODO(student): add projector tests in test/test_gksl.jl"))
+        @test norm(LdL * LdL - LdL) ≤ 1e-10
+        @test norm(LdL - LdL') ≤ 1e-10
     end
 end
