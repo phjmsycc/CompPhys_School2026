@@ -5,3 +5,5 @@ using GrapheneHHG
 include("test_tb.jl")
 include("test_gksl.jl")
 include("test_observables.jl")
+include("test_fft.jl")
+include("test_workflows.jl")
