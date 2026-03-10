@@ -1,0 +1,10 @@
+.reveal {
+  --r-main-font: var(--typography-base-font-family, "Noto Sans JP", sans-serif);
+  font-family: var(--r-main-font);
+}
+
+.reveal .slides section {
+  padding: 0;
+  text-align: left;
+  box-sizing: border-box;
+}

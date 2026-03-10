@@ -1,0 +1,34 @@
+mathjax:
+  packages:
+    - mhchem
+    - physics
+    - boldsymbol
+
+  macros:
+    bm:
+      definition: "\\boldsymbol{#1}"
+      args: 1
+    num:
+      definition: "{#1}"
+      args: 1
+    si:
+      definition: "\\mathrm{#1}"
+      args: 1
+    SI:
+      definition: "{#1}\\,\\mathrm{#2}"
+      args: 2
+    unit:
+      definition: "\\mathrm{#1}"
+      args: 1
+    qty:
+      definition: "{#1}\\,\\mathrm{#2}"
+      args: 2
+    br: "\\bm{r}"
+    bk: "\\bm{k}"
+    dag: "\\dagger"
+
+    # 追加例:
+    # RR: "\\mathbb{R}"
+    # inner:
+    #   definition: "\\langle #1, #2 \\rangle"
+    #   args: 2

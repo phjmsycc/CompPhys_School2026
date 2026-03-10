@@ -1,0 +1,17 @@
+.reveal section.deck-eyecatch-slide {
+  padding: 0;
+  overflow: hidden;
+}
+
+.reveal section.deck-eyecatch-slide > h2 {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  max-width: var(--eyecatch-title-max-width, 900px);
+  font-size: var(--eyecatch-title-font-size, 2.4em);
+  color: var(--eyecatch-title-color, #333333);
+  font-weight: var(--eyecatch-title-font-weight, 700);
+  line-height: var(--eyecatch-title-line-height, 1.1);
+  letter-spacing: var(--eyecatch-title-letter-spacing, 0);
+  z-index: 3;
+}

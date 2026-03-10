@@ -1,0 +1,10 @@
+---
+title: "B-1. 計算物理学のための Julia 入門"
+---
+
+{{< include _basic.qmd >}}
+{{< include _handson1.qmd >}}
+{{< include _handson2.qmd >}}
+{{< include _handson3.qmd >}}
+{{< include _handson4.qmd >}}
+{{< include _advanced.qmd >}}

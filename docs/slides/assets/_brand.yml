@@ -1,0 +1,21 @@
+color:
+  palette:
+    teal: "#208177"
+    charcoal: "#333333"
+    light-gray: "#dfdfdf"
+    near-white: "#f3f3f3"
+  primary: teal
+  foreground: charcoal
+  background: light-gray
+
+typography:
+  fonts:
+    - family: "Noto Sans JP"
+      source: google
+  base:
+    family: "Noto Sans JP"
+    weight: 400
+  headings:
+    family: "Noto Sans JP"
+    weight: 800
+    color: teal

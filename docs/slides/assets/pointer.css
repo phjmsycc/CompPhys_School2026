@@ -1,0 +1,31 @@
+#deck-laser-pointer {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle, rgba(255, 255, 255, 0.95) 0 18%, rgba(255, 72, 72, 0.98) 24%, rgba(220, 0, 0, 0.9) 48%, rgba(220, 0, 0, 0.35) 68%, rgba(220, 0, 0, 0) 100%);
+  box-shadow: 0 0 10px rgba(255, 40, 40, 0.45);
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 2147483647;
+  transition: opacity 80ms linear;
+}
+
+#deck-laser-pointer.is-visible {
+  opacity: 1;
+}
+
+@media print {
+  #deck-laser-pointer {
+    display: none !important;
+  }
+}
+
+html.print-pdf #deck-laser-pointer,
+body.print-pdf #deck-laser-pointer {
+  display: none !important;
+}

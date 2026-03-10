@@ -1,0 +1,227 @@
+schema_version: 2
+
+tokens:
+  color:
+    teal: "#208177"
+    charcoal: "#333333"
+    light_gray: "#dfdfdf"
+    near_white: "#f3f3f3"
+    title_overlay_text: "#f2f2f2"
+    note_text: "rgba(51, 51, 51, 0.78)"
+    inline_code_text: "#7a1f1f"
+    inline_code_background: "rgba(0, 0, 0, 0.06)"
+    code_block_text: "#2b2b2b"
+    code_block_background: "rgba(255, 255, 255, 0.45)"
+    caption_text: "#666666"
+    table_border: "rgba(0, 0, 0, 0.2)"
+    table_header_background: "rgba(0, 0, 0, 0.04)"
+    annotation_text: "rgba(51, 51, 51, 0.72)"
+    annotation_separator: "rgba(0, 0, 0, 0.14)"
+    inherit: "inherit"
+
+  typography:
+    base_font_family: '"Noto Sans JP", sans-serif'
+    heading_font_family: '"Noto Sans JP", sans-serif'
+    presentation_root_font_size: "30px"
+    presentation_h1_font_size: "1.95em"
+    presentation_h2_font_size: "1.18em"
+
+  spacing:
+    columns_gap: "34px"
+    annotations_gap: "0.32em"
+    annotations_reserve_gap: "10px"
+
+components:
+  overlay:
+    text: |
+      2026/03/11
+      計算物理春の学校 2026
+
+    position:
+      default:
+        x: 1010
+        y: 10
+
+      title:
+        x: 900
+        y: 640
+
+    style:
+      font_size: "0.7em"
+      opacity: "0.85"
+      line_height: "1.7"
+      text_align: "center"
+      anchor_x: "center"
+      title_color_token: "title_overlay_text"
+
+  page_number:
+    position:
+      x: 1205.5
+      y: 16
+
+    style:
+      current_font_size: "1.4em"
+      total_font_size: "0.55em"
+      color_token: "title_overlay_text"
+      opacity: "1"
+      line_gap: "0.2em"
+      text_align: "center"
+      anchor_x: "center"
+
+  title_slide:
+    title:
+      x: 96
+      y: 300
+      font_size: "1.55em"
+      color_token: "teal"
+
+    subtitle:
+      x: 200
+      y: 365
+      font_size: "0.96em"
+      color_token: "charcoal"
+
+    author:
+      x: 1200
+      y: 675
+      font_size: "0.88em"
+      color_token: "title_overlay_text"
+
+    affiliation:
+      x: 1200
+      y: 635
+      font_size: "0.82em"
+      color_token: "title_overlay_text"
+
+  body_slide:
+    background:
+      image: "assets/body-bg.png"
+      size: "contain"
+      opacity: "1.0"
+
+  body_styles:
+    slide_heading:
+      x: 43
+      y: 25
+      color_token: "near_white"
+      font_size: "1.2em"
+      font_weight: "800"
+      line_height: "1.1"
+      letter_spacing: "-0.02em"
+
+    content_area:
+      left: 60
+      right: 72
+      top: 126
+      bottom: 52
+      color_token: "charcoal"
+      font_size: "0.88em"
+      line_height: "1.45"
+
+    headings:
+      h1:
+        color_token: "teal"
+        font_size: "1.16em"
+        font_weight: "800"
+        line_height: "1.18"
+        margin_top: "0"
+        margin_bottom: "0.42em"
+      h2:
+        color_token: "teal"
+        font_size: "1.08em"
+        font_weight: "800"
+        line_height: "1.18"
+        margin_top: "0.2em"
+        margin_bottom: "0.38em"
+      h3:
+        color_token: "teal"
+        font_size: "0.98em"
+        font_weight: "800"
+        line_height: "1.18"
+        margin_top: "0"
+        margin_bottom: "0.35em"
+      h4:
+        color_token: "teal"
+        font_size: "0.92em"
+        font_weight: "700"
+        line_height: "1.2"
+        margin_top: "0.2em"
+        margin_bottom: "0.32em"
+      h5:
+        color_token: "teal"
+        font_size: "0.86em"
+        font_weight: "700"
+        line_height: "1.2"
+        margin_top: "0.2em"
+        margin_bottom: "0.28em"
+      h6:
+        color_token: "teal"
+        font_size: "0.82em"
+        font_weight: "700"
+        line_height: "1.2"
+        margin_top: "0.2em"
+        margin_bottom: "0.24em"
+
+    text:
+      paragraph_color_token: "charcoal"
+      paragraph_font_size: "1em"
+      list_color_token: "charcoal"
+      list_font_size: "1em"
+      link_color_token: "teal"
+      strong_color_token: "inherit"
+      em_color_token: "inherit"
+      note_color_token: "note_text"
+      note_font_size: "0.84em"
+
+    code:
+      inline_font_size: "0.92em"
+      inline_color_token: "inline_code_text"
+      inline_background_token: "inline_code_background"
+      inline_padding: "0.08em 0.28em"
+      block_font_size: "0.78em"
+      block_color_token: "code_block_text"
+      block_background_token: "code_block_background"
+      block_padding: "0.75em 0.95em"
+      block_line_height: "1.45"
+
+    blocks:
+      blockquote_color_token: "charcoal"
+      blockquote_font_size: "0.92em"
+      blockquote_border_color_token: "teal"
+      figure_caption_color_token: "caption_text"
+      figure_caption_font_size: "0.72em"
+      table_font_size: "0.78em"
+      table_header_color_token: "charcoal"
+      table_text_color_token: "charcoal"
+      table_border_color_token: "table_border"
+      table_header_background_token: "table_header_background"
+      callout_title_color_token: "teal"
+      callout_body_color_token: "charcoal"
+
+    layout:
+      columns_gap_token: "columns_gap"
+
+    annotations:
+      font_size: "0.68em"
+      color_token: "annotation_text"
+      line_height: "1.3"
+      gap_token: "annotations_gap"
+      separator_color_token: "annotation_separator"
+      reserve_gap_token: "annotations_reserve_gap"
+
+  eyecatch:
+    background:
+      image: "assets/eyecatch-bg.png"
+      size: "contain"
+      position: "center"
+
+    title:
+      x: 85
+      y: 315
+      max_width: 900
+      font_size: "1.55em"
+      color_token: "teal"
+      font_weight: "700"
+      line_height: "1.1"
+      letter_spacing: "0"
+      anchor_x: "left"

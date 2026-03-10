@@ -1,0 +1,66 @@
+.reveal section.deck-body-slide > aside,
+.reveal section.deck-body-slide > div.aside {
+  position: absolute !important;
+  left: var(--body-content-left, 60px);
+  right: var(--body-content-right, 72px);
+  bottom: var(--body-content-bottom, 52px);
+  margin: 0 !important;
+  width: auto;
+  max-width: none;
+  font-size: var(--body-annotations-font-size, 0.68em);
+  line-height: var(--body-annotations-line-height, 1.3);
+  color: var(--body-annotations-color, rgba(51, 51, 51, 0.72));
+  z-index: 4;
+}
+
+.reveal section.deck-body-slide > aside > :first-child,
+.reveal section.deck-body-slide > div.aside > :first-child {
+  margin-top: 0;
+}
+
+.reveal section.deck-body-slide > aside > :last-child,
+.reveal section.deck-body-slide > div.aside > :last-child {
+  margin-bottom: 0;
+}
+
+.reveal section.deck-body-slide > aside :where(p, li, ol, ul, .aside-footnotes),
+.reveal section.deck-body-slide > div.aside :where(p, li, ol, ul, .aside-footnotes) {
+  color: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.reveal section.deck-body-slide > aside p,
+.reveal section.deck-body-slide > div.aside p {
+  margin: 0;
+}
+
+.reveal section.deck-body-slide > aside .aside-footnotes,
+.reveal section.deck-body-slide > div.aside .aside-footnotes {
+  margin-top: var(--body-annotations-gap, 0.32em);
+  padding-top: var(--body-annotations-gap, 0.32em);
+  border-top: 1px solid var(--body-annotations-separator-color, rgba(0, 0, 0, 0.14));
+}
+
+.reveal section.deck-body-slide > aside .aside-footnotes ol,
+.reveal section.deck-body-slide > div.aside .aside-footnotes ol,
+.reveal section.deck-body-slide > aside .aside-footnotes ul,
+.reveal section.deck-body-slide > div.aside .aside-footnotes ul {
+  margin: 0;
+  padding-left: 1.2em;
+}
+
+.reveal section.deck-body-slide > aside .aside-footnotes li:first-of-type,
+.reveal section.deck-body-slide > div.aside .aside-footnotes li:first-of-type {
+  margin-top: 0;
+}
+
+.reveal section.deck-body-slide > aside .aside-footnotes li,
+.reveal section.deck-body-slide > div.aside .aside-footnotes li {
+  margin-top: 0.12em;
+}
+
+.reveal section.deck-body-slide > aside .footnote-back,
+.reveal section.deck-body-slide > div.aside .footnote-back {
+  display: none;
+}

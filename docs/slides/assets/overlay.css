@@ -1,0 +1,72 @@
+/*
+  Overlay elements must be positioned in the slide coordinate space.
+  If we position them relative to `.reveal .slides` (which can be viewport-sized),
+  they will drift when Reveal centers the slide on large viewports.
+  We therefore mount overlays into a per-slide overlay layer.
+*/
+
+.reveal .slides section > .deck-overlay-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.slide-fixed-text,
+.slide-page-counter {
+  position: absolute;
+  z-index: 999;
+  pointer-events: none;
+}
+
+.slide-fixed-text {
+  white-space: pre-line;
+  width: max-content;
+  max-width: 100%;
+}
+
+.slide-page-counter {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: max-content;
+  max-width: 100%;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.slide-page-counter-current,
+.slide-page-counter-total {
+  display: block;
+}
+
+/* revealjs の組み込み番号は使わず、独自オーバーレイに統一する */
+.reveal .slide-number {
+  display: none !important;
+}
+
+#title-slide h1.title,
+#title-slide p.subtitle,
+#title-slide .quarto-title-author-name,
+#title-slide .quarto-title-authors,
+#title-slide .quarto-title-affiliation,
+#title-slide .quarto-title-affiliations {
+  z-index: 5;
+}
+
+
+#title-slide .title-slide-author-overlay,
+#title-slide .title-slide-affiliation-overlay {
+  position: absolute;
+  z-index: 6;
+  margin: 0;
+  padding: 0;
+  width: max-content;
+  max-width: none;
+  white-space: pre-line;
+  writing-mode: horizontal-tb;
+  text-orientation: mixed;
+  direction: ltr;
+  text-align: right;
+}

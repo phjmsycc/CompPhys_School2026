@@ -1,0 +1,190 @@
+/*-- scss:defaults --*/
+$body-bg: #dfdfdf;
+$body-color: #333333;
+$link-color: #208177;
+$font-family-sans-serif: var(--typography-base-font-family, "Noto Sans JP", sans-serif);
+$presentation-heading-font: var(--typography-heading-font-family, "Noto Sans JP", sans-serif);
+$presentation-heading-color: #208177;
+$presentation-font-size-root: var(--typography-presentation-root-font-size, 30px);
+$presentation-h1-font-size: var(--typography-presentation-h1-font-size, 1.95em);
+$presentation-h2-font-size: var(--typography-presentation-h2-font-size, 1.18em);
+
+/*-- scss:rules --*/
+@import "scss/base";
+@import "scss/eyecatch";
+@import "scss/body-layout";
+@import "scss/body-typography";
+@import "scss/body-annotations";
+@import "scss/reveal-overrides";
+
+.reveal section.deck-body-slide > .slide-body .compact-list ul,
+.reveal section.deck-body-slide > .slide-body ul.compact-list {
+  margin-top: 0.35em;
+  padding-left: 1.05em;
+}
+
+.reveal section.deck-body-slide > .slide-body .compact-list li,
+.reveal section.deck-body-slide > .slide-body li.compact {
+  margin-bottom: 0.22em;
+  line-height: 1.28;
+}
+
+.reveal section.deck-body-slide > .slide-body .tiny,
+.reveal section.deck-body-slide > .slide-body .tiny p,
+.reveal section.deck-body-slide > .slide-body .tiny li,
+.reveal section.deck-body-slide > .slide-body .tiny td,
+.reveal section.deck-body-slide > .slide-body .tiny th {
+  font-size: 0.82em;
+}
+
+.reveal section.deck-body-slide > .slide-body .prompt-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.reveal section.deck-body-slide > .slide-body .prompt-card {
+  border-radius: 18px;
+  border: 2px solid rgba(32, 129, 119, 0.22);
+  background: rgba(255, 255, 255, 0.56);
+  padding: 0.85rem 1rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.reveal section.deck-body-slide > .slide-body .prompt-card h3,
+.reveal section.deck-body-slide > .slide-body .prompt-card h4 {
+  margin-top: 0;
+  margin-bottom: 0.28em;
+}
+
+.reveal section.deck-body-slide > .slide-body .prompt-card p,
+.reveal section.deck-body-slide > .slide-body .prompt-card li {
+  font-size: 0.9em;
+  line-height: 1.3;
+}
+
+.reveal section.deck-body-slide > .slide-body .prompt-card pre {
+  margin: 0.5rem 0 0.6rem;
+  font-size: 0.72em;
+  line-height: 1.28;
+}
+
+.reveal section.deck-body-slide > .slide-body .prompt-card pre code {
+  line-height: 1.28;
+}
+
+.reveal section.deck-body-slide > .slide-body .prompt-card .eyebrow {
+  display: inline-block;
+  margin-bottom: 0.45rem;
+  padding: 0.12rem 0.48rem;
+  border-radius: 999px;
+  background: rgba(32, 129, 119, 0.12);
+  color: #208177;
+  font-size: 0.68em;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.reveal section.deck-body-slide > .slide-body .code-map {
+  border-left: 4px solid #208177;
+  background: rgba(32, 129, 119, 0.08);
+  border-radius: 12px;
+  padding: 0.65rem 0.8rem;
+}
+
+.reveal section.deck-body-slide > .slide-body .code-map p,
+.reveal section.deck-body-slide > .slide-body .code-map li {
+  margin-bottom: 0.22em;
+  font-size: 0.88em;
+}
+
+.reveal section.deck-body-slide > .slide-body .source-caption {
+  margin-top: 0.45rem;
+  color: rgba(51, 51, 51, 0.74);
+  font-size: 0.68em;
+  line-height: 1.28;
+}
+
+.reveal section.deck-body-slide > .slide-body .image-card {
+  background: rgba(255, 255, 255, 0.48);
+  border: 2px solid rgba(0, 0, 0, 0.07);
+  border-radius: 18px;
+  padding: 0.8rem;
+}
+
+.reveal section.deck-body-slide > .slide-body .image-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.reveal section.deck-body-slide > .slide-body .fact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.reveal section.deck-body-slide > .slide-body .fact-card {
+  background: rgba(255, 255, 255, 0.54);
+  border: 2px solid rgba(0, 0, 0, 0.06);
+  border-radius: 16px;
+  padding: 0.7rem 0.85rem;
+}
+
+.reveal section.deck-body-slide > .slide-body .fact-card h3,
+.reveal section.deck-body-slide > .slide-body .fact-card h4 {
+  margin-top: 0;
+  margin-bottom: 0.24em;
+}
+
+.reveal section.deck-body-slide > .slide-body .fact-card p,
+.reveal section.deck-body-slide > .slide-body .fact-card li {
+  font-size: 0.88em;
+  line-height: 1.28;
+}
+
+.reveal section.deck-body-slide > .slide-body .step-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.reveal section.deck-body-slide > .slide-body .step-card {
+  border-radius: 18px;
+  padding: 0.7rem 0.8rem;
+  background: rgba(255, 255, 255, 0.55);
+  border: 2px solid rgba(32, 129, 119, 0.16);
+}
+
+.reveal section.deck-body-slide > .slide-body .step-card .num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  margin-bottom: 0.4rem;
+  background: #208177;
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.76em;
+}
+
+.reveal section.deck-body-slide > .slide-body .step-card p {
+  font-size: 0.84em;
+  line-height: 1.24;
+}
+
+.reveal section.deck-body-slide > .slide-body .mini-table table {
+  font-size: 0.72em;
+}
+
+.reveal section.deck-body-slide > .slide-body .center-stat {
+  display: inline-block;
+  padding: 0.24rem 0.58rem;
+  border-radius: 999px;
+  background: rgba(209, 91, 70, 0.12);
+  color: #c04a38;
+  font-weight: 700;
+}

@@ -1,0 +1,52 @@
+.reveal section.deck-body-slide {
+  padding: 0;
+  overflow: hidden;
+}
+
+.reveal section.deck-body-slide > h2 {
+  position: absolute;
+  left: var(--body-slide-heading-x, 43px);
+  top: var(--body-slide-heading-y, 25px);
+  margin: 0;
+  padding: 0;
+  color: var(--body-slide-heading-color, #f3f3f3);
+  font-size: var(--body-slide-heading-font-size, 1.04em);
+  font-weight: var(--body-slide-heading-font-weight, 800);
+  line-height: var(--body-slide-heading-line-height, 1.1);
+  letter-spacing: var(--body-slide-heading-letter-spacing, -0.02em);
+  z-index: 3;
+}
+
+.reveal section.deck-body-slide > .slide-body {
+  position: absolute;
+  left: var(--body-content-left, 60px);
+  right: var(--body-content-right, 72px);
+  top: var(--body-content-top, 126px);
+  bottom: calc(var(--body-content-bottom, 52px) + var(--slide-annotations-height, 0px));
+  margin: 0;
+  padding: 0;
+  color: var(--body-content-color, #333333);
+  font-size: var(--body-content-font-size, 0.88em);
+  line-height: var(--body-content-line-height, 1.45);
+  overflow: hidden;
+}
+
+.reveal section.deck-body-slide.scrollable > .slide-body,
+.reveal section.deck-body-slide.body-scroll > .slide-body {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.reveal section.deck-body-slide > .slide-body > :first-child {
+  margin-top: 0;
+}
+
+.reveal section.deck-body-slide .columns {
+  gap: var(--body-columns-gap, 34px);
+  align-items: start !important;
+}
+
+.reveal section.deck-body-slide .columns > * {
+  min-width: 0;
+  margin-top: 0;
+}

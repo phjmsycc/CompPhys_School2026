@@ -1,0 +1,21 @@
+# Julia
+/.julia/
+
+# Generated plots
+/examples/out/
+
+# Quarto build outputs
+/slides/**/.quarto/
+/slides/**/*.html
+/slides/**/*_files/
+/**/.playwright-cli/
+
+!/slides/**/assets/*
+!/slides/**/overlay-body.html
+!/slides/**/overlay-head.html
+
+/.luarc.json
+
+/output/playwright/*
+
+!/slides/templates/*.html

@@ -1,0 +1,148 @@
+## ハンズオン4: `Δ=0` / `Δ≠0` を比べる
+
+::: {.columns}
+::: {.column width="50%"}
+### 対象
+
+- `examples/04_selection_rule.jl`
+
+### 主題
+
+- `Δ=0` / `Δ≠0` の比較から相対変化を読み取る
+
+### 到達目標
+
+- `Δ=0` と `Δ=0.2` のスペクトルを並べて比較する
+- `examples/out/04_selection_rule.png` を保存する
+
+:::
+
+::: {.column width="50%"}
+![](assets/figures/session5-selection.png){fig-alt="selection comparison from example" width=100%}
+
+::: {.source-caption}
+図: `examples/04_selection_rule.jl`
+:::
+
+:::
+:::
+
+## ハンズオン4 詳細: `Δ` は何を変えるか
+
+::: {.columns}
+::: {.column width="50%"}
+$$
+\mathcal H(\bm{k})=
+\begin{pmatrix}
+\Delta & -t f(\bm{k})\\
+-t f^*(\bm{k}) & -\Delta
+\end{pmatrix}
+$$
+
+:::
+
+::: {.column width="50%"}
+### `Δ = 0`
+
+- 副格子が対等
+- Dirac cone が閉じる
+
+### `Δ ≠ 0`
+
+- A/B サイトが非対等
+- gap が開く
+- それまで抑えられていた応答成分が現れうる
+
+:::
+:::
+
+## ハンズオン4 詳細: 周辺コード
+
+::: {.columns}
+::: {.column width="56%"}
+```julia
+# ここは固定済み: 時間発展から FFT までは変えない
+function run_spectrum(Δ; Nk = 20, γ = 0.1, A0 = 0.5, ω0 = 0.7, dt = 0.02)
+    result = simulate_currents(TBParams(t = 1.0, Δ = Δ); Nk = Nk, γ = γ, A0 = A0, ω0 = ω0, dt = dt)
+    return hhg_spectra(result.currents, result.dt, result.pulse.ω0)
+end
+```
+
+```julia
+# 穴埋め候補は比較線を重ねる最小部分だけ
+lines!(ax_x, sp0.x.n, log10.(sp0.x.power .+ 1e-20); label = "Δ=0.0")
+lines!(ax_x, spΔ.x.n, log10.(spΔ.x.power .+ 1e-20); label = "Δ=0.2")
+lines!(ax_y, sp0.y.n, log10.(sp0.y.power .+ 1e-20); label = "Δ=0.0")
+lines!(ax_y, spΔ.y.n, log10.(spΔ.y.power .+ 1e-20); label = "Δ=0.2")
+```
+:::
+
+::: {.column width="44%"}
+### 周辺コードの役割
+
+- `run_spectrum` が「時間発展から FFT まで」を一気につなぐ
+- `plot_selection_rule` が `Jx/Jy` を上下 2 段で描く
+- 比較条件は `Δ` 以外固定
+- 軸や凡例の細部は比較を見せるための補助である
+
+:::
+:::
+
+## AI活用 Prompt: ハンズオン4 の前確認
+
+::: {.prompt-card}
+<div class="eyebrow">GitHub Copilot Agent</div>
+利用文脈: 比較図を文章化する前に、観測事実と対称性の説明を分ける。
+
+```text
+手元のコードまたは checkpoint-5-selection で得られる examples/out/04_selection_rule.png を見て、
+まず観測事実を整理したいです。
+Δ=0 と Δ≠0 で、Jx と Jy の各成分にどんな相対変化が見えるかを先に書いてください。
+その後で、動的対称性や副格子非対称性の言葉を使って説明してください。
+図から直接見えない内容は、推測と明示して区別してください。
+```
+
+:::
+
+## FB4: `Δ=0` / `Δ≠0` 比較から何を言うか
+
+::: {.columns}
+::: {.column width="58%"}
+![](assets/figures/session5-selection.png){fig-alt="selection comparison from example" width=100%}
+
+::: {.source-caption}
+図: `examples/04_selection_rule.jl`
+:::
+:::
+
+::: {.column width="42%"}
+### この図から言えること
+
+- `Δ` を変えても `Jx` はほとんど変わらない
+- `Jy` は偶数次応答 `n=2,4,6,...` が現れる
+- 動的対称性の帰結と整合している
+
+
+
+:::
+:::
+
+## 動的対称性: $\Delta \neq 0$ の場合
+
+::: {.columns}
+::: {.column width="50%"}
+### 壊れる対称性
+
+- $(U_{\sigma zx}, t)$ は $\Delta=0$ のときだけ成り立つ
+- $\Delta\neq0$ では A/B 副格子が非対等になり、$y\to -y$ で元に戻らない
+- したがって $J_y(t)=0$ はもう要請されない
+:::
+
+::: {.column width="50%"}
+### 残る対称性
+
+- $(U_{\sigma yz}, t + T/2)$ は $\Delta$ に依らず残る
+- $J_x(2n\omega_0)=0$, $J_y((2n+1)\omega_0)=0$
+- 図では $J_x$ はほぼ重なり、$J_y$ の偶数次が立ち上がる
+:::
+:::

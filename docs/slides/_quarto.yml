@@ -1,0 +1,38 @@
+project:
+  type: default
+  resources:
+    - assets/**
+
+lang: ja
+
+brand: assets/_brand.yml
+
+author: "金賀 穂"
+institute: "千葉大学"
+title-slide-attributes:
+  data-background-image: "assets/title-bg.png" # 背景の画像
+  data-background-size: contain # 背景サイズの指定
+  data-background-opacity: "1.0" # 背景の透明度の指定
+
+format:
+  revealjs:
+    theme: [default, assets/theme.scss]
+    width: 1280
+    height: 720
+    slide-level: 2
+    margin: 0
+    controls: false
+    progress: false
+    center: false
+    center-title-slide: false
+    navigation-mode: linear
+    template: templates/revealjs.template.html
+    metadata-files:
+      - assets/_variables.yml
+      - assets/_mathjax.yml
+    filters:
+      - assets/overlay-config.lua
+
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
