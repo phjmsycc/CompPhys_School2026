@@ -5,17 +5,17 @@
 /examples/out/
 
 # Quarto build outputs
-/slides/**/.quarto/
-/slides/**/*.html
-/slides/**/*_files/
+/docs/slides/**/.quarto/
+/docs/slides/**/*.html
+/docs/slides/**/*_files/
 /**/.playwright-cli/
 
-!/slides/**/assets/*
-!/slides/**/overlay-body.html
-!/slides/**/overlay-head.html
+!/docs/slides/**/assets/*
+!/docs/slides/**/overlay-body.html
+!/docs/slides/**/overlay-head.html
 
 /.luarc.json
 
 /output/playwright/*
 
-!/slides/templates/*.html
+!/docs/slides/templates/*.html
