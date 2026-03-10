@@ -56,7 +56,7 @@ $$
 :::
 :::
 
-## ハンズオン4 詳細: 周辺コード
+## ハンズオン4 詳細: コード
 
 ::: {.columns}
 ::: {.column width="56%"}
@@ -69,11 +69,8 @@ end
 ```
 
 ```julia
-# 穴埋め候補は比較線を重ねる最小部分だけ
-lines!(ax_x, sp0.x.n, log10.(sp0.x.power .+ 1e-20); label = "Δ=0.0")
-lines!(ax_x, spΔ.x.n, log10.(spΔ.x.power .+ 1e-20); label = "Δ=0.2")
-lines!(ax_y, sp0.y.n, log10.(sp0.y.power .+ 1e-20); label = "Δ=0.0")
-lines!(ax_y, spΔ.y.n, log10.(spΔ.y.power .+ 1e-20); label = "Δ=0.2")
+# handson3 と同じ仕様に固定し、
+# "Δ=0.0"と"Δ=0.2"を重ねてプロットしてみよう
 ```
 :::
 
@@ -83,7 +80,7 @@ lines!(ax_y, spΔ.y.n, log10.(spΔ.y.power .+ 1e-20); label = "Δ=0.2")
 - `run_spectrum` が「時間発展から FFT まで」を一気につなぐ
 - `plot_selection_rule` が `Jx/Jy` を上下 2 段で描く
 - 比較条件は `Δ` 以外固定
-- 軸や凡例の細部は比較を見せるための補助である
+- handson3 と同じ軸仕様で比較し、違いは `Δ` による変化へ寄せる
 
 :::
 :::
@@ -92,15 +89,17 @@ lines!(ax_y, spΔ.y.n, log10.(spΔ.y.power .+ 1e-20); label = "Δ=0.2")
 
 ::: {.prompt-card}
 <div class="eyebrow">GitHub Copilot Agent</div>
-利用文脈: 比較図を文章化する前に、観測事実と対称性の説明を分ける。
+利用文脈: 比較図に基づく観測事実と、対称性の説明を紐づける。
 
 ```text
-手元のコードまたは checkpoint-5-selection で得られる examples/out/04_selection_rule.png を見て、
-まず観測事実を整理したいです。
-Δ=0 と Δ≠0 で、Jx と Jy の各成分にどんな相対変化が見えるかを先に書いてください。
-その後で、動的対称性や副格子非対称性の言葉を使って説明してください。
-図から直接見えない内容は、推測と明示して区別してください。
+`examples/out/04_selection_rule.png` を理解したいです。
+まず `run_spectrum` など比較図まわりのコードを読み、`Δ` 以外の条件が固定であることを確認してください。
+その後、先に読む周辺コードと比較条件、図から直接言える観測事実
+（`Δ=0` と `Δ≠0` の Jx/Jy の違い）、各事実に対応する説明候補
+（動的対称性・副格子非対称性）、図だけでは断定できない点の順に整理してください。
+観測事実と解釈は分け、推測には推測と明記してください。
 ```
+
 
 :::
 
@@ -133,7 +132,7 @@ lines!(ax_y, spΔ.y.n, log10.(spΔ.y.power .+ 1e-20); label = "Δ=0.2")
 ::: {.column width="50%"}
 ### 壊れる対称性
 
-- $(U_{\sigma zx}, t)$ は $\Delta=0$ のときだけ成り立つ
+- $(U_{I_y}, t)$ は $\Delta=0$ のときだけ成り立つ
 - $\Delta\neq0$ では A/B 副格子が非対等になり、$y\to -y$ で元に戻らない
 - したがって $J_y(t)=0$ はもう要請されない
 :::
@@ -141,7 +140,7 @@ lines!(ax_y, spΔ.y.n, log10.(spΔ.y.power .+ 1e-20); label = "Δ=0.2")
 ::: {.column width="50%"}
 ### 残る対称性
 
-- $(U_{\sigma yz}, t + T/2)$ は $\Delta$ に依らず残る
+- $(U_{I_x}, t + T/2)$ は $\Delta$ に依らず残る
 - $J_x(2n\omega_0)=0$, $J_y((2n+1)\omega_0)=0$
 - 図では $J_x$ はほぼ重なり、$J_y$ の偶数次が立ち上がる
 :::

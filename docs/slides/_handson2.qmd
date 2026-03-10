@@ -79,6 +79,7 @@ $$
 - $L_\bk$ は `A=0` の固有状態から前計算する
 
 
+
 ## ハンズオン2: `J(t)` を計算・プロットする
 
 ::: {.columns}
@@ -225,15 +226,14 @@ end
 利用文脈: 手元の `src/rhs.jl`と `src/observables.jl` を埋める前に、GKSL の各項と `rhs!` と `current_traces` の役割を整理する。
 
 ```text
-手元の src/rhs.jl を埋める前に確認したいです。
-現行の関数シグネチャ、引数、戻り値、型注釈に合わせて、
-1. GKSL の各項と commutator! / dissipator! / rhs! の対応
-2. A(t), γ, L_k, kshift の確認項目
-3. 実装後に見る確認項目
-の順で整理してください。
-候補コードは必要最小限で示してください。
-余裕があれば最後に、src/observables.jl の current_traces が何を集計しているかを 2〜3 行で補足してください。
+`src/rhs.jl` と `src/observables.jl` を理解しながら実装したいです。
+まず `commutator!`, `dissipator!`, `rhs!`, `current_traces` の役割とデータの流れを整理し、
+その後 GKSL 各項との対応、`A(t)`, `γ`, `L_k`, `kshift` が効く場所、
+候補コード、確認観点（`tr(dρ)=0`, エルミート性, `L^\dagger L`, `J(t)`）
+の順に説明してください。最後に `current_traces` の集計内容を 2〜3 行で補足し、
+確実に読めることと推測は分けてください。
 ```
+
 
 :::
 

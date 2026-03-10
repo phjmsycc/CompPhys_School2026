@@ -28,9 +28,9 @@ quarto render slides/slide.qmd
 学生向けの救済線は次の 4 段階です。
 
 - `checkpoint-1-band`: `src/tb.jl` が埋まり、`examples/01_bands.jl` が動く
-- `checkpoint-2-rhs`: `src/rhs.jl` が埋まり、`examples/02_timeevol_current.jl` と `Pkg.test()` が動く
-- `checkpoint-4-fft`: `examples/03_hhg_fft.jl` が埋まり、HHG スペクトルが出る
-- `checkpoint-5-selection`: `examples/04_selection_rule.jl` が埋まり、`Δ=0` / `Δ≠0` 比較が出る
+- `checkpoint-2-rhs`: `src/rhs.jl` と `src/observables.jl` が埋まり、`examples/02_timeevol_current.jl` と `Pkg.test()` が動く
+- `checkpoint-3-fft`: `src/fft.jl` が埋まり、HHG スペクトルが出る
+- `checkpoint-4-selection`: `examples/04_selection_rule.jl` が動き、`Δ=0` / `Δ≠0` 比較が出る
 
 詰まった場合は対応する tag に切り替えて続行します。
 
@@ -42,7 +42,7 @@ git switch --detach checkpoint-2-rhs
 
 ```bash
 git diff main..checkpoint-2-rhs
-git diff checkpoint-5-selection..solution-complete
+git diff checkpoint-4-selection..solution-complete
 ```
 
 ## 完成版とテスト

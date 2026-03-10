@@ -178,7 +178,7 @@ A
 ## ドキュメント 4: Documenter.jl + GitHub Pages
 
 ::: {.columns}
-::: {.column width="58%"}
+::: {.column width="45%"}
 ```julia
 # docs/make.jl
 makedocs(;
@@ -198,7 +198,7 @@ deploydocs(; repo="github.com/xxxxxxxx/GrapheneHHG.jl", devbranch="main")
 ```
 :::
 
-::: {.column width="42%"}
+::: {.column width="55%"}
 ::: {.step-grid}
 ::: {.step-card}
 <div class="num">1</div>
@@ -251,8 +251,8 @@ jobs:
 ```
 :::
 
-
-### CI に写す理由
+::: {.column width="46%"}
+### CIテストをする理由
 
 - ビルドが通ることを保証できる
 - 壊れていれば早く気がつく
@@ -260,7 +260,7 @@ jobs:
 :::
 :::
 
-## カバレッジ 1: 数字より未検証箇所の発見
+## カバレッジ 1: 未検証箇所の発見
 
 ::: {.columns}
 ::: {.column width="50%"}
@@ -309,15 +309,13 @@ jobs:
 
 - `hhg_spectrum` の異常入力
 - `current_traces` の長さ不一致
-- `ci/verify_repo.jl` の starter / solution 分岐
 - TODO から完成版へ変わる箇所
 - `examples` でしか触らない経路
 
 ### 増やし方の原則
 
-- 行数を埋めるためのテストは書かない
 - 壊れたとき困る経路から埋める
-- 物理的に意味のある境界条件を優先する
+- 物理的に意味のある条件を優先する
 :::
 
 ::: {.column width="48%"}
@@ -332,8 +330,6 @@ jobs:
 ### ただし
 
 - ここで大事なのは数値より運用の意味
-- 現状この repo に coverage 連携は入っていない
-- まずは「何をまだ試していないか」を言えるようにする
 :::
 :::
 
@@ -372,7 +368,7 @@ jobs:
 ::: {.column width="46%"}
 ### JOSS 的な見方
 
-- 研究結果だけでなく software 自体がレビュー対象
+- software そのものがレビュー対象
 - 他人が install して main example を追えることが重要
 - 説明、検証、実行例がそろって初めて再利用しやすい
 
@@ -387,13 +383,6 @@ jobs:
 
 ## 論文投稿 2: 授業 repo から投稿準備へ
 
-::: {.columns}
-::: {.column width="58%"}
-
-:::
-:::
-
-::: {.column width="42%"}
 ::: {.code-map}
 ### 授業後に足すもの
 
@@ -404,12 +393,11 @@ jobs:
 - release と投稿用の説明文を整える
 :::
 
-### ここでの結論
+### コメント
 
 - 再現できるだけではまだ半分
 - 他人が読めて、試せて、直せる形にして初めて共有できる
-:::
-:::
+
 
 ## まとめ
 
@@ -417,7 +405,7 @@ jobs:
 ::: {.column width="50%"}
 ### できるようになったこと
 
-- `Jx(t), Jy(t)` を FFT して HHG スペクトルへ変換できる
+- Juliaを使って `Jx(t), Jy(t)` を FFT して HHG スペクトルへ変換できる
 - 動的対称性と選択則からスペクトル形状を説明できる
 
 ::: {style="margin-top: -10px;"}

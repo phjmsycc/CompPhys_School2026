@@ -18,18 +18,37 @@ end
 # Δ = 0 と Δ = 0.2 のスペクトルを同じ軸に重ね、
 # 偶数次高調波の現れ方の違いを見やすくする。
 function plot_selection_rule(sp0, spΔ)
-    imax_x = min(findlast(<=(20.0), sp0.x.n), findlast(<=(20.0), spΔ.x.n))
-    imax_y = min(findlast(<=(20.0), sp0.y.n), findlast(<=(20.0), spΔ.y.n))
+    imax_x = min(findlast(<=(12.0), sp0.x.n), findlast(<=(12.0), spΔ.x.n))
+    imax_y = min(findlast(<=(12.0), sp0.y.n), findlast(<=(12.0), spΔ.y.n))
+    xpower0 = log10.(sp0.x.power[1:imax_x] .+ 1e-20)
+    xpowerΔ = log10.(spΔ.x.power[1:imax_x] .+ 1e-20)
+    ypower0 = log10.(sp0.y.power[1:imax_y] .+ 1e-20)
+    ypowerΔ = log10.(spΔ.y.power[1:imax_y] .+ 1e-20)
 
     fig = Figure(size = (1100, 760))
-    ax_x = Axis(fig[1, 1], title = "Selection rule from Jx", xlabel = "n = ω/ω0", ylabel = "log10 Power")
-    lines!(ax_x, sp0.x.n[1:imax_x], log10.(sp0.x.power[1:imax_x] .+ 1e-20); linewidth = 2, label = "Δ=0.0")
-    lines!(ax_x, spΔ.x.n[1:imax_x], log10.(spΔ.x.power[1:imax_x] .+ 1e-20); linewidth = 2, label = "Δ=0.2")
+    ax_x = Axis(
+        fig[1, 1],
+        title = "Selection rule from Jx",
+        xlabel = "n = ω/ω0",
+        ylabel = "log10 Power",
+        xticks = 0:1:12,
+    )
+    lines!(ax_x, sp0.x.n[1:imax_x], xpower0; linewidth = 2, label = "Δ=0.0")
+    lines!(ax_x, spΔ.x.n[1:imax_x], xpowerΔ; linewidth = 2, label = "Δ=0.2")
+    xlims!(ax_x, 0, 12)
+    ylims!(ax_x, -10, max(maximum(xpower0), maximum(xpowerΔ), -10))
     axislegend(ax_x; position = :rt)
 
-    ax_y = Axis(fig[2, 1], title = "Selection rule from Jy", xlabel = "n = ω/ω0", ylabel = "log10 Power")
-    lines!(ax_y, sp0.y.n[1:imax_y], log10.(sp0.y.power[1:imax_y] .+ 1e-20); linewidth = 2, label = "Δ=0.0")
-    lines!(ax_y, spΔ.y.n[1:imax_y], log10.(spΔ.y.power[1:imax_y] .+ 1e-20); linewidth = 2, label = "Δ=0.2")
+    ax_y = Axis(
+        fig[2, 1],
+        title = "Selection rule from Jy",
+        xlabel = "n = ω/ω0",
+        ylabel = "log10 Power",
+        xticks = 0:1:12,
+    )
+    lines!(ax_y, sp0.y.n[1:imax_y], ypower0; linewidth = 2, label = "Δ=0.0")
+    lines!(ax_y, spΔ.y.n[1:imax_y], ypowerΔ; linewidth = 2, label = "Δ=0.2")
+    xlims!(ax_y, 0, 12)
     axislegend(ax_y; position = :rt)
     return fig
 end
