@@ -53,7 +53,7 @@ jobs:
           test -f public/slides/assets/overlay.css
           test -f public/slides/assets/js/overlay/index.js
           test -f public/slides/slide_files/libs/revealjs/dist/reveal.js
-          rg 'href="assets/|src="assets/|href="slide_files/|src="slide_files/' public/slides/index.html
+          grep -E 'href="assets/|src="assets/|href="slide_files/|src="slide_files/' public/slides/index.html
 
       - uses: actions/upload-pages-artifact@v4
         with:
