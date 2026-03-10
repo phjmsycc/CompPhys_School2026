@@ -27,7 +27,7 @@ include("workflows.jl")
 export d1, d2, d3, b1, b2, NN_VECTORS
 export kgrid_rhombus, hex_vertices
 
-export PulseParams, default_pulse, A, E
+export PulseParams, default_pulse, A
 
 export TBParams, f, dfdk, H, dHdk
 
