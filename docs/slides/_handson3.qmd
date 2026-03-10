@@ -10,7 +10,7 @@
 ### ここまでで分かっていること
 
 - `H(k)` と `dH/dk` はコードで書ける
-- `A(t)` を入れて GKSL方程式を濃くと `J(t)` が出る
+- `A(t)` を入れて GKSL方程式を書くと `J(t)` が出る
 - $\Delta=0$では `Jx` と `Jy` の振る舞いに差がある
 :::
 
@@ -22,7 +22,7 @@
 
 ### 流れ
 
-- `J(t)` の再確認と動的対称性
+- `J(t)` の再確認
 - ハンズオン3
 - FB3
 - ハンズオン4
@@ -80,7 +80,7 @@
 
 ### 詰まったら
 
-- `checkpoint-4-fft`
+- `checkpoint-3-fft`
 :::
 :::
 
@@ -114,18 +114,17 @@ end
 
 ::: {.prompt-card}
 <div class="eyebrow">GitHub Copilot Agent</div>
-利用文脈: `src/fft.jl` の `hhg_spectrum` を埋める前に、周波数軸の意味と確認項目を整理する。`examples/03_hhg_fft.jl` は入出力確認用に読むだけの前提とする。
+利用文脈: `src/fft.jl` の `hhg_spectrum` を埋める前に、周波数軸の意味と確認項目を整理する。
 
 ```text
-src/fft.jl の hhg_spectrum を埋める前に確認したいです。
-現行実装では、simulate_currents が返す全時間領域をそのまま FFT に渡し、
-前処理は平均値除去だけです。
-この仕様で、
-1. hhg_spectrum が何をどの順で計算しているか
-2. dt とサンプル数が周波数軸にどう効くか
-3. 実装後に examples/03_hhg_fft.jl で確認する項目
-を整理してください。
+`src/fft.jl` の `hhg_spectrum` を、入出力の意味を理解しながら実装したいです。
+`Jt`, `dt`, `ω0` と戻り値が何を表すかを先に整理し、その後
+処理の順序（平均値除去, `rfft`, 周波数軸, 次数変換, power）、
+`dt` とサンプル数が分解能や見える次数範囲にどう効くか、
+候補コード、`examples/03_hhg_fft.jl` で確認する問い
+の順に説明してください。確実に言えることと予想は分けてください。
 ```
+
 
 :::
 
@@ -165,11 +164,11 @@ U^\dagger H(t + \Delta t) U = H(t)
 $$
 
 $$
-U^\dagger \hat O(t + \Delta t) U = R \hat O(t)
+U^\dagger \hat{\bm O}(t + \Delta t) U = R \hat{\bm O}(t)
 $$
 
-- 空間操作 $U$ と時間並進 $\Delta t$ を組にした対称性
-- ここではレーザー周期を $T = 2\pi/\omega_0$ とし、論文の $\Omega$ を $\omega_0$ と読む
+- 空間操作 $U$ と時間並進 $0<\Delta t<T$ を組にした対称性
+- ここで、レーザー周期を $T = 2\pi/\omega_0$ とする
 :::
 
 ::: {.column width="50%"}
@@ -191,29 +190,17 @@ $$
 :::
 :::
 
-## x方向直線偏光 + $\Delta=0$: 導出概要
+## x方向直線偏光 + $\Delta=0$の場合
 
 ::: {.columns}
-::: {.column width="50%"}
-### 1. 反転 + 半周期
+::: {.column width="57%"}
 
-$$
-k' = (-k_x, k_y)
-$$
-
-$$
-U_{\sigma yz} H_k(t + T/2) U_{\sigma yz}^\dagger = H_{k'}(t)
-$$
-
-- $U_{\sigma yz} \hat J_k(t + T/2) U_{\sigma yz}^\dagger$ の下で、$J_x$ は符号反転し、$J_y$ は不変
+![](assets/figures/2026-03-11-00-36-20.png){width=100%}
 :::
 
-::: {.column width="50%"}
-### 2. 密度行列とフーリエへ写す
+::: {.column width="43%"}
 
-- $U_{\sigma yz} L_k U_{\sigma yz}^\dagger = L_{k'}$ なので、$U_{\sigma yz} \rho_k(t + T/2) U_{\sigma yz}^\dagger = \rho_{k'}(t)$
-- ペア電流 $\tilde J_{\alpha,k}(t) := J_{\alpha,k}(t) + J_{\alpha,k'}(t)$ を作ると、$\tilde J_{x,k}$ は半周期で符号反転し、$\tilde J_{y,k}$ は不変
-- 結果: $\tilde J_{x,k}(2m\omega_0)=0$, $\tilde J_{y,k}((2m+1)\omega_0)=0$
+![](assets/figures/2026-03-11-00-38-05.png){width=100%}
 :::
 :::
 
@@ -223,7 +210,7 @@ $$
 ::: {.column width="50%"}
 ### $\Delta = 0$
 
-- 残る対称性: $(U_{\sigma yz}, t + T/2)$, $(U_{\sigma zx}, t)$
+- 残る対称性: $(U_{I_x}, t + T/2)$, $(U_{I_y}, t)$
 
 $$
 J_x(2n\omega_0)=0,\qquad J_y(t)=0
@@ -235,7 +222,7 @@ $$
 ::: {.column width="50%"}
 ### $\Delta \neq 0$
 
-- 残る対称性: $(U_{\sigma yz}, t + T/2)$ のみ
+- 残る対称性: $(U_{I_x}, t + T/2)$ のみ
 
 $$
 J_x(2n\omega_0)=0,\qquad J_y((2n+1)\omega_0)=0
