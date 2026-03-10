@@ -1,0 +1,72 @@
+name: Slides Pages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "docs/slides/**"
+      - ".github/workflows/pages-slides.yml"
+  pull_request:
+    paths:
+      - "docs/slides/**"
+      - ".github/workflows/pages-slides.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: slides-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build slides artifact
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/configure-pages@v5
+
+      - uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: "1.8.27"
+
+      - name: Render slides
+        run: quarto render docs/slides/slide.qmd --quiet
+
+      - name: Assemble Pages artifact
+        run: |
+          rm -rf public
+          mkdir -p public/slides
+          cp docs/slides/slide.html public/slides/index.html
+          cp -R docs/slides/assets public/slides/assets
+          cp -R docs/slides/slide_files public/slides/slide_files
+          touch public/.nojekyll
+
+      - name: Verify artifact contents
+        run: |
+          test -f public/slides/index.html
+          test -f public/slides/assets/overlay.css
+          test -f public/slides/assets/js/overlay/index.js
+          test -f public/slides/slide_files/libs/revealjs/dist/reveal.js
+          rg 'href="assets/|src="assets/|href="slide_files/|src="slide_files/' public/slides/index.html
+
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: public
+
+  deploy:
+    name: Deploy slides
+    needs: build
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

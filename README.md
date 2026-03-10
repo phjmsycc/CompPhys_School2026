@@ -20,7 +20,7 @@ Pkg.instantiate()
 
 ```bash
 julia --project=. -e 'using GrapheneHHG'
-quarto render slides/slide.qmd
+quarto render docs/slides/slide.qmd
 ```
 
 ## checkpoint の使い方
@@ -68,8 +68,10 @@ julia --project=. examples/04_selection_rule.jl
 ## スライド
 
 ```bash
-quarto render slides/slide.qmd
-quarto render slides
+quarto render docs/slides/slide.qmd
+quarto render docs/slides
 ```
 
-スライドの正規入口は `slides/slide.qmd` です。本文は `slides/_basic.qmd`, `slides/_handson1.qmd`, `slides/_handson2.qmd`, `slides/_handson3.qmd`, `slides/_handson4.qmd`, `slides/_advanced.qmd` に分割しています。設定ファイルは `slides/_quarto.yml` です。
+スライドの正規入口は `docs/slides/slide.qmd` です。本文は `docs/slides/_basic.qmd`, `docs/slides/_handson1.qmd`, `docs/slides/_handson2.qmd`, `docs/slides/_handson3.qmd`, `docs/slides/_handson4.qmd`, `docs/slides/_advanced.qmd` に分割しています。設定ファイルは `docs/slides/_quarto.yml` です。
+
+GitHub Pages では `https://phjmsycc.github.io/CompPhys_School2026/slides/` で公開する想定です。公開は `.github/workflows/pages-slides.yml` が担当し、`docs/slides/slide.qmd` を CI 上でレンダリングして Pages artifact を作成します。
