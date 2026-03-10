@@ -74,4 +74,4 @@ quarto render docs/slides
 
 スライドの正規入口は `docs/slides/slide.qmd` です。本文は `docs/slides/_basic.qmd`, `docs/slides/_handson1.qmd`, `docs/slides/_handson2.qmd`, `docs/slides/_handson3.qmd`, `docs/slides/_handson4.qmd`, `docs/slides/_advanced.qmd` に分割しています。設定ファイルは `docs/slides/_quarto.yml` です。
 
-GitHub Pages では `https://phjmsycc.github.io/CompPhys_School2026/slides/` で公開する想定です。公開は `.github/workflows/pages-slides.yml` が担当し、`docs/slides/slide.qmd` を CI 上でレンダリングして Pages artifact を作成します。
+GitHub Pages では `https://phjmsycc.github.io/CompPhys_School2026/slides/` で公開します。公開は `.github/workflows/pages-slides.yml` が担当し、`docs/slides/slide.qmd` を CI 上でレンダリングして Pages artifact を作成します。
