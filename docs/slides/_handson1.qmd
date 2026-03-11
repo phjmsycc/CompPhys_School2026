@@ -22,10 +22,24 @@
 
 ### タイトバインディング模型
 
+::: {.columns}
+::: {.column width="65%"}
 $$
 \hat H_0 = -t_0 \sum_{\bm r}\sum_{j=1}^3 (\hat b_{\bm r+\bm d_j}^\dagger \hat a_{\bm r} + \text{h.c.})
 + \Delta\sum_{\bm r} (\hat a_{\bm r}^\dagger \hat a_{\bm r} - \hat b_{\bm r}^\dagger \hat b_{\bm r})
 $$
+:::
+::: {.column width="35%"}
+
+\begin{align}
+&\acomm{\hat c_\br}{\hat c'_{\br'}}=\delta_{cc'}\delta_{\br\br'}\\
+&\comm{A}{B}=AB-BA\\
+&\acomm{A}{B}=AB+BA
+\end{align}
+
+
+:::
+:::
 
 :::aside
 - $t_0$: 最近接ホッピングの強さ
