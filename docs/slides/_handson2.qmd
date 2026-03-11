@@ -61,8 +61,8 @@ $$
 \dot{\rho}_\bk(t)=
 -i[\mathcal H_\bk(t), \rho_\bk(t)]
 +\gamma\left(
-L_\bk \rho_\bk L_\bk^\dagger
--\frac{1}{2}\{L_\bk^\dagger L_\bk,\rho_\bk\}
+L_\bk \rho_\bk(t) L_\bk^\dagger
+-\frac{1}{2}\{L_\bk^\dagger L_\bk,\rho_\bk(t)\}
 \right)
 $$
 
@@ -122,8 +122,8 @@ $$
 ::: {.column width="56%"}
 $$
 {\small
-\dot{\rho}_\bk(t)=
--i[\mathcal H_\bk(t), \rho_\bk(t)]
+\dot{\rho}_\bk=
+-i[\mathcal H_\bk(t), \rho_\bk]
 +\gamma\left(
 L_\bk \rho_\bk L_\bk^\dagger
 -\frac{1}{2}\{L_\bk^\dagger L_\bk,\rho_\bk\}
@@ -178,7 +178,7 @@ end
 ### ここで押さえること
 
 - `A` 微分、したがって `k` 微分したハミルトニアンが応答演算子になる
-- この教材では `real(tr(ρ * dHdk))` を各 `k` で評価して平均する
+- この教材では $\expval{\bm J_\bk(t)}=\Tr[\rho_\bk(t)\pdv{\mathcal H_\bk(t)}{\bk}]$（`real(tr(ρ * dHdk))`） を各 `k` で評価して平均する
 
 ### 実装時の注意
 
