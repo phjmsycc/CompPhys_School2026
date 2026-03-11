@@ -68,9 +68,6 @@ $body$
   <script src="$revealjs-url$/plugin/notes/notes.js"></script>
   <script src="$revealjs-url$/plugin/search/search.js"></script>
   <script src="$revealjs-url$/plugin/zoom/zoom.js"></script>
-$if(mathjax)$
-  <script src="$revealjs-url$/plugin/math/math.js"></script>
-$endif$
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>
@@ -105,6 +102,54 @@ $endif$
           console.error('Failed to parse MathJax config', error);
           return defaults;
         }
+      }
+
+      function initDeckMathJax(mathjaxUrl) {
+        if (document.getElementById('MathJax-script')) {
+          return;
+        }
+
+        var config = readDeckMathJaxConfig(mathjaxUrl);
+        var startup = config && typeof config.startup === 'object' && config.startup !== null
+          ? config.startup
+          : {};
+        var originalReady = typeof startup.ready === 'function' ? startup.ready : null;
+        var url = config.mathjax || mathjaxUrl;
+
+        config.startup = Object.assign({}, startup, {
+          ready: function() {
+            if (originalReady) {
+              originalReady();
+            } else if (window.MathJax?.startup?.defaultReady) {
+              window.MathJax.startup.defaultReady();
+            }
+
+            if (window.MathJax?.startup?.promise?.then) {
+              window.MathJax.startup.promise
+                .then(function() {
+                  if (window.Reveal?.layout) {
+                    window.Reveal.layout();
+                  }
+                })
+                .catch(function(error) {
+                  console.error('MathJax startup failed', error);
+                });
+            }
+          }
+        });
+
+        delete config.mathjax;
+        window.MathJax = config;
+
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.id = 'MathJax-script';
+        script.src = url;
+        script.async = true;
+        script.onerror = function(error) {
+          console.error('Failed to load MathJax', error);
+        };
+        document.head.appendChild(script);
       }
 
       function normalizeNonSlideSections() {
@@ -148,7 +193,7 @@ $endif$
 
       // Full list of configuration options available at:
       // https://revealjs.com/config/
-      Reveal.initialize({
+      var revealInit = Reveal.initialize({
         // Display controls in the bottom right corner
         controls: $controls$,
 
@@ -339,21 +384,23 @@ $if(maxScale)$
 
         maxScale: $maxScale$,
 $endif$
-$if(mathjax)$
-
-        mathjax3: readDeckMathJaxConfig('$mathjaxurl$'),
-$endif$
 
         // reveal.js plugins
         plugins: [
-$if(mathjax)$
-          RevealMath.MathJax3,
-$endif$
           RevealNotes,
           RevealSearch,
           RevealZoom
         ]
       });
+$if(mathjax)$
+      if (revealInit && typeof revealInit.then === 'function') {
+        revealInit.then(function() {
+          initDeckMathJax('$mathjaxurl$');
+        });
+      } else {
+        initDeckMathJax('$mathjaxurl$');
+      }
+$endif$
     </script>
   $for(include-after)$
   $include-after$
