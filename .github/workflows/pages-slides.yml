@@ -55,7 +55,7 @@ jobs:
           test -f public/slides/slide_files/libs/revealjs/dist/reveal.js
           grep -E 'href="assets/|src="assets/|href="slide_files/|src="slide_files/' public/slides/index.html
 
-      - uses: actions/upload-pages-artifact@v4
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: public
 
