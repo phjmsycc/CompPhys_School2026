@@ -1,6 +1,6 @@
 name = "GrapheneHHG"
 uuid = "8f48e19f-e635-4f73-a158-ff8d9f6f5c07"
-authors = ["Keisan Butsuri Spring School Team"]
+authors = ["Minoru Kanega"]
 version = "0.1.0"
 
 [deps]

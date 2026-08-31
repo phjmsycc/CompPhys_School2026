@@ -5,7 +5,7 @@ DocMeta.setdocmeta!(GrapheneHHG, :DocTestSetup, :(using GrapheneHHG); recursive=
 
 makedocs(;
     modules=[GrapheneHHG],
-    authors="Minoru Kanega <xxxx.xxxxx@gmail.com>",
+    authors="Minoru Kanega",
     sitename="GrapheneHHG.jl",
     format=Documenter.HTML(;
         canonical="https://xxxxxxxx.github.io/GrapheneHHG.jl",
