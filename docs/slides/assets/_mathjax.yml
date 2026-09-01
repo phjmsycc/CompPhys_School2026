@@ -1,4 +1,4 @@
-mathjax:
+deck-mathjax:
   packages:
     - mhchem
     - physics

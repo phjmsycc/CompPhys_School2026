@@ -23,10 +23,14 @@ format:
     margin: 0
     controls: false
     progress: false
+    mathjax: false
     center: false
     center-title-slide: false
     navigation-mode: linear
-    template: templates/revealjs.template.html
+    include-after-body:
+      - assets/includes/mathjax.inc
+    revealjs-plugins:
+      - normalize-sections
     metadata-files:
       - assets/_variables.yml
       - assets/_mathjax.yml

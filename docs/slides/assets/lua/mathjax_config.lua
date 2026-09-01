@@ -135,7 +135,7 @@ local function escape_json_for_script(json)
 end
 
 function M.build(meta, utils, mathjax_url)
-  local mathjax_meta = utils.read_path(meta, { "mathjax" }) or {}
+  local mathjax_meta = utils.read_path(meta, { "deck-mathjax" }) or {}
   local packages = normalize_packages(mathjax_meta.packages, utils)
   local macros = normalize_macros(mathjax_meta.macros, utils)
   local loader = {}
